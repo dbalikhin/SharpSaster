@@ -150,6 +150,19 @@ namespace SharpSaster
             return new OkResult();
         }
 
+        public IActionResult SqqlClientVulnerableSemgrep(string username, string name) 
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=(local);Initial Catalog=Northwind;Integrated Security=SSPI;"))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                
+                command.CommandText = string.Format("SELECT c.name AS column_name,t.name AS type_name,c.max_length,c.precision,c.scale,             CAST(CASE WHEN EXISTS(SELECT * FROM sys.index_columns AS i WHERE i.object_id=c.object_id AND i.column_id=c.column_id) THEN 1 ELSE 0 END AS BIT) AS column_indexed             FROM sys.columns AS c              JOIN sys.types AS t ON c.user_type_id=t.user_type_id              WHERE c.object_id = OBJECT_ID('{0}')              ORDER BY c.column_id;", name);
+            }
+
+            return new OkResult();
+        }
+
         public IActionResult SqlClientVulnerable10(string username, string name, string spName)
         {
             // arbitrary stored procedure call
