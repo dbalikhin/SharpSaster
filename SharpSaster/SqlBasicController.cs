@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharpSaster.Data;
 
@@ -63,8 +61,6 @@ namespace SharpSaster
                 .FromSqlInterpolated($"SELECT * FROM ACCOUNTS WHERE login = {user}");
             // SAFE
             _context.Database.ExecuteSqlInterpolated($"SELECT * FROM ACCOUNTS WHERE login = {user}");
-
-            _context.Accounts.FromSqlRaw($"SELECT * FROM ACCOUNTS WHERE login = '{user}'");
 
             return new OkResult();
         }

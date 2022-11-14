@@ -19,16 +19,21 @@ namespace SharpSaster
         {
             DoStuffLevel1(input);
 
-            return new OkResult(); ;
+            return new OkResult();
         }
 
         private void DoStuffLevel1(string inputLevel1)
         {
+            var toLog = "logged: " + inputLevel1;
             DoStuffLevel2(inputLevel1);
         }
 
         private void DoStuffLevel2(string inputLevel2)
         {
+            if (inputLevel2.Length == 0)
+            {
+                return;
+            }
             var concatSql = "SELECT * FROM ACCOUNTS WHERE login = '" + inputLevel2 + "'";
             _context.Accounts
                 .FromSqlRaw(concatSql);
@@ -95,7 +100,7 @@ namespace SharpSaster
             return new OkResult();
         }
 
-        // HARMLESS (rachable with null or empty input
+        // HARMLESS (reachable with null or empty input
         public IActionResult EfCoreFlow12(string input, string otherparam)
         {
             if (!string.IsNullOrEmpty(input))
