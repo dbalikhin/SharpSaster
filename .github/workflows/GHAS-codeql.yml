@@ -72,3 +72,10 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
+        
+        
+    - name: Get version
+      id: vars
+      run: echo ::set-output name=sariffile::$(cat /home/runner/work/SharpSaster/results/csharp.sarif)
+    - name: Test output
+      run: echo ${{ steps.vars.outputs.sariffile }}
