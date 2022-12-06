@@ -10,26 +10,36 @@ namespace SharpSaster
     [ApiController]
     public class SqlBasicInterfaceController : ControllerBase
     {
-        public IRepo _repo1 = new Repo();
+        public IRepo _repoVulnerable1 = new Repo();
 
-        private readonly IRepo _repo2;
+        public IRepo _repoDummy = new DummyRepo();
+
+        private readonly IRepo _repoVulnerable2;
 
         public SqlBasicInterfaceController(IRepo repo)
-        {            
-            _repo2 = repo;
+        {
+            _repoVulnerable2 = repo;
         }
 
 
         public IActionResult SqlClientVulnerable1(string username, string name)
         {
-            _repo1.DoRepoStuff(username, name);
+
+            _repoVulnerable1.DoRepoStuff(username, name);
 
             return new OkResult();
         }
 
         public IActionResult SqlClientVulnerable2(string username, string name)
         {
-            _repo2.DoRepoStuff(username, name);
+            _repoVulnerable2.DoRepoStuff(username, name);
+
+            return new OkResult();
+        }
+
+        public IActionResult SqlClientDummySafe(string username, string name)
+        {
+            _repoDummy.DoRepoStuff(username, name);
 
             return new OkResult();
         }
@@ -57,6 +67,14 @@ namespace SharpSaster
 
                 concatSqlCommand.ExecuteReader();
             }
+        }
+    }
+
+    public class DummyRepo : IRepo
+    {
+        public void DoRepoStuff(string username, string name)
+        {
+            return;
         }
     }
 }
