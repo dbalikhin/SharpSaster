@@ -11,8 +11,12 @@ namespace SharpSaster
     public class SqlBasicInterfaceController : ControllerBase
     {
         public IRepo _repoVulnerable1 = new Repo();
+        
+        public Repo _repoVulnerable3 = new Repo();
 
         public IRepo _repoDummy = new DummyRepo();
+        
+        public DummyRepo _repoDummy2 = new DummyRepo();
 
         private readonly IRepo _repoVulnerable2;
 
@@ -36,10 +40,24 @@ namespace SharpSaster
 
             return new OkResult();
         }
+        
+        public IActionResult SqlClientVulnerable3(string username, string name)
+        {
+            _repoVulnerable3.DoRepoStuff(username, name);
+
+            return new OkResult();
+        }
 
         public IActionResult SqlClientDummySafe(string username, string name)
         {
             _repoDummy.DoRepoStuff(username, name);
+
+            return new OkResult();
+        }
+        
+        public IActionResult SqlClientDummySafe2(string username, string name)
+        {
+            _repoDummy2.DoRepoStuff(username, name);
 
             return new OkResult();
         }
