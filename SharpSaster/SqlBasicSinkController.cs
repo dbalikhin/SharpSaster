@@ -77,7 +77,7 @@ namespace SharpSaster
         {
             string concatSql = "SELECT * FROM Accounts WHERE Username='" + username + "' OR  Name='" + name + "'";
 
-            using(SqlConnection connection = new SqlConnection("dummyconnectionstring"))
+            using(SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=DATABASE_NAME;Integrated Security=True;"))
             {
                 SqlCommand concatSqlCommand = new SqlCommand()
                 {
