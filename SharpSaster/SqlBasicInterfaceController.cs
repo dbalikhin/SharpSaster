@@ -72,18 +72,18 @@ namespace SharpSaster
     public class Repo : IRepo
     {
         public void DoRepoStuff(string username, string name)
-        {
-            string concatSql = "SELECT * FROM Accounts WHERE Username='" + username + "' OR  Name='" + name + "'";
+        {           
 
             using (SqlConnection connection = new SqlConnection("dummyconnectionstring"))
-            {
-                SqlCommand concatSqlCommand = new SqlCommand()
-                {
-                    CommandText = concatSql,
-                    CommandType = CommandType.Text,
-                };
+            {                
+                SqlCommand command = connection.CreateCommand();
 
-                concatSqlCommand.ExecuteReader();
+                string concatSql = "SELECT * FROM Accounts WHERE Username='" + username + "' OR  Name='" + name + "'";
+
+                command.CommandText = concatSql;
+                command.CommandType= CommandType.Text;
+
+                command.ExecuteReader();
             }
         }
     }
