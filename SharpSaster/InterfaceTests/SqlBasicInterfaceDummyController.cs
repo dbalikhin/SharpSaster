@@ -6,10 +6,9 @@ namespace SharpSaster.InterfaceTests
     [ApiController]
     public class SqlBasicInterfaceDummyController : ControllerBase
     {
-
         public IRepo _repoDummy = new DummyRepo();
 
-        public IRepo _repoInjected = new Repo();
+        public IRepo _repoInjected;
 
         public DummyRepo _repoDummyInstance = new DummyRepo();
 
