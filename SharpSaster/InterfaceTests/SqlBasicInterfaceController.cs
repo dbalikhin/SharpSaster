@@ -21,5 +21,12 @@ namespace SharpSaster.InterfaceTests
             return new OkResult();
         }
 
+        public IActionResult SqlClientVulnerableRepoInjected2(string username, string name)
+        {
+            _repoInjected.DoRepoEFCoreStuff(username, name);
+
+            return new OkResult();
+        }
+
     }
 }

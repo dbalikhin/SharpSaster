@@ -4,7 +4,7 @@
     {
         public void DoRepoEFCoreStuff(string username, string name)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void DoRepoStuff(string username, string name)

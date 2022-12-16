@@ -25,6 +25,13 @@ namespace SharpSaster.InterfaceTests
             return new OkResult();
         }
 
+        public IActionResult SqlClientDummySafe2(string username, string name)
+        {
+            _repoDummy.DoRepoEFCoreStuff(username, name);
+
+            return new OkResult();
+        }
+
         public IActionResult SqlClientDummyInstanceSafe(string username, string name)
         {
             _repoDummyInstance.DoRepoStuff(username, name);
