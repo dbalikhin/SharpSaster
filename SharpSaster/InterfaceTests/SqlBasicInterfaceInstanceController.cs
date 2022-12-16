@@ -10,7 +10,7 @@ namespace SharpSaster.InterfaceTests
     [ApiController]
     public class SqlBasicInterfaceInstanceController : ControllerBase
     {
-        public Repo _repoInstance = new Repo();
+        //public Repo _repoInstance = new Repo();
 
         private readonly IRepo _repoInjected;
 
@@ -20,12 +20,14 @@ namespace SharpSaster.InterfaceTests
             _repoInjected = repo;
         }
 
+        /*
         public IActionResult SqlClientVulnerableRepoInstance(string username, string name)
         {
             _repoInstance.DoRepoStuff(username, name);
 
             return new OkResult();
         }
+        */
 
     }
 }

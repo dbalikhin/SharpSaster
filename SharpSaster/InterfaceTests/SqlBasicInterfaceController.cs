@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SharpSaster.Data;
 
 namespace SharpSaster.InterfaceTests
 {
@@ -6,8 +7,6 @@ namespace SharpSaster.InterfaceTests
     [ApiController]
     public class SqlBasicInterfaceController : ControllerBase
     {
-        public IRepo _repo = new Repo();
-
         private readonly IRepo _repoInjected;
 
         public SqlBasicInterfaceController(IRepo repo)
@@ -15,17 +14,16 @@ namespace SharpSaster.InterfaceTests
             _repoInjected = repo;
         }
 
-
-        public IActionResult SqlClientVulnerableRepo(string username, string name)
+        public IActionResult SqlClientVulnerableRepoInjected(string username, string name)
         {
-            _repo.DoRepoStuff(username, name);
+            _repoInjected.DoRepoStuff(username, name);
 
             return new OkResult();
         }
 
-        public IActionResult SqlClientVulnerableRepoInjected(string username, string name)
+        public IActionResult SqlClientVulnerableRepoInjected2(string username, string name)
         {
-            _repoInjected.DoRepoStuff(username, name);
+            _repoInjected.DoRepoEFCoreStuff(username, name);
 
             return new OkResult();
         }
