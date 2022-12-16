@@ -1,4 +1,4 @@
-using SharpSaster;
+using SharpSaster.InterfaceTests;
 
 var builder = WebApplication.CreateBuilder(args);
 
